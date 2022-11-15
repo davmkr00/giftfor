@@ -23,14 +23,15 @@ def send_product():
     json_body = request.get_json(force=True)
     # "giftfor": "him/her"
     # "count": product number to send
+    # "price": under price number
     # "received": random ids that already sent to client
-    print('block list', json_body['received']) # get random without this numbers
+    already_selected_ids = ','.join(map(str,json_body['received']))
     cursor = mysql.connection.cursor()
-    cursor.execute(f'SELECT id, title, price, image, url from giftfor_{json_body["giftfor"]} ORDER BY RAND() LIMIT {json_body["count"]};')
+    cursor.execute(f'SELECT id, title, price, image, url from giftfor_{json_body["giftfor"]} WHERE price < {json_body["price"]} AND id NOT IN({already_selected_ids}) ORDER BY RAND() LIMIT {json_body["count"]};')
     data = cursor.fetchall()
     return jsonify(data)
 
-@app.route('/result', methods=['PUT'])
+@app.route('/feedback', methods=['POST'])
 def update_likes():
     json_body = request.get_json(force=True)
     # "giftfor": "him/her"

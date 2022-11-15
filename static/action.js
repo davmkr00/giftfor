@@ -19,6 +19,37 @@ function initCards(card, index) {
 
 initCards();
 
+function get_cards(giftfor, count, received) {
+  const data = postData('http://localhost:4000/product', {
+    giftfor: 'him',
+    count: 1,
+    price: 8,
+    received: [81, 2],
+  });
+  data.then((value) => console.log(value));
+}
+
+function feedback(giftfor, action, id) {
+  postData('http://localhost:4000/feedback', {
+    giftfor: 'him',
+    action: 'liked',
+    id: 24,
+  });
+}
+
+async function postData(url = '', data = {}) {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+get_cards();
+
 allCards.forEach(function (el) {
   var hammertime = new Hammer(el);
 
