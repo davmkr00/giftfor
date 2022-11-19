@@ -1,11 +1,13 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
 body {
-  background-image: url("background.jpg");
+  background-image: url('background.jpg');
   /*backdrop-filter: blur(20px);*/
   background-size: 100%;
   overflow: hidden;
@@ -13,7 +15,7 @@ body {
 }
 
 .root {
-  margin-top:5%;
+  margin-top: 5%;
 }
 
 .header img {
@@ -22,7 +24,7 @@ body {
   width: 19%;
 }
 
-.gender{
+.gender {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -30,9 +32,10 @@ body {
   margin-top: 30px;
 }
 
-.female, .male {
+.female,
+.male {
   width: 15%;
-  user-drag: none; 
+  user-drag: none;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
@@ -43,26 +46,24 @@ body {
 .btn {
   border: 2px solid black;
   border-radius: 5px;
-  background-color: #E92828;
-  color:black;
+  background-color: #e92828;
+  color: black;
   cursor: pointer;
   display: block;
   margin: 40px;
-  font-size:40px;
+  font-size: 40px;
   width: 250px;
   height: 100px;
-
 }
 
-
 .danger {
-  border-color: #E92828;
+  border-color: #e92828;
   color: white;
 }
 
 .danger:hover {
   background-color: transparent;
-  color: #E92828;
+  color: #e92828;
 }
 
 .giftfor {
@@ -124,8 +125,8 @@ body {
   display: inline-block;
   width: 90vw;
   max-width: 400px;
-  height: 70vh;
-  background: #FFFFFF;
+  height: 450px;
+  background: #ffffff;
   padding-bottom: 40px;
   border-radius: 8px;
   overflow: hidden;
@@ -180,7 +181,7 @@ body {
   line-height: 60px;
   width: 60px;
   border: 0;
-  background: #FFFFFF;
+  background: #ffffff;
   display: inline-block;
   margin: 0 8px;
 }
@@ -195,9 +196,9 @@ body {
 }
 
 .fa-heart {
-  color: #E92828;
+  color: #e92828;
 }
 
 .fa-remove {
-  color: #555F68;
+  color: #555f68;
 }

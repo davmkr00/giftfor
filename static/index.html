@@ -1,50 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Giftfor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giftfor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div class="giftfor">
+      <div class="giftfor--status">
+        <i class="fa fa-remove"></i>
+        <i class="fa fa-heart"></i>
+      </div>
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<div class="giftfor">
-  <div class="giftfor--status">
-    <i class="fa fa-remove"></i>
-    <i class="fa fa-heart"></i>
-  </div>
+      <div id="giftfor-cards" class="giftfor--cards"></div>
 
-  <div class="giftfor--cards">
-    <div class="giftfor--card">
-      <img src="https://m.media-amazon.com/images/I/711WKKYnFjL.jpg">
-      <p>Scotte Cigar Ashtray Coaster Whiskey Glass Tray & Wooden Ash Tray with Cigar Cutter,Include Drawer and Cigar Slot Home Office Outdoor Ashtrays Great Cigar Accessories for Men</p>
+      <div id="actions" class="giftfor--buttons">
+        <button id="nope"><i class="fa fa-remove"></i></button>
+        <button id="love"><i class="fa fa-heart"></i></button>
+      </div>
     </div>
-    <div class="giftfor--card">
-      <img src="https://m.media-amazon.com/images/I/81lXie67+gL.jpg">
-      <p>Universal Socket Tool Set, Super Socket Tool Mechanic Tool Set, Stocking Stuffers Gifts for Men Him Dad for Christmas, Ratchet Screwdriver Set with Adapter, 25 PCS Orange </p>
-    </div>
-    <div class="giftfor--card">
-      <img src="https://m.media-amazon.com/images/I/9179RdixQSL.jpg">
-      <p>Bonsai Tree Kit – 5X Unique Japanese Bonzai Trees | Complete Indoor Starter Kit for Growing Plants with Bonsai Seeds, Tools & Planters – Gardening Gifts for Women & Men</p>
-    </div>
-    <div class="giftfor--card">
-      <img src="https://m.media-amazon.com/images/I/51mGO8tspJL.jpg">
-      <p>LuminAID PackLite Max 2-in-1 Camping Lantern and Phone Charger | For Backpacking, Emergency Kits and Travel | As Seen on Shark Tank</p>
-    </div>
-    <div class="giftfor--card">
-      <img src="https://m.media-amazon.com/images/I/91txom4GGlL.jpg">
-      <p>Eterluck Wooden Docking Station Men, Nightstand Organizer Bundle w/ RFID Blocking Leather Wallet - Charging Station, Cell Phone Stand, Tablet Stand, Husband Gifts from Wife, for Dad - Walnut</p>
-    </div>
-  </div>
-
-  <div class="giftfor--buttons">
-    <button id="nope"><i class="fa fa-remove"></i></button>
-    <button id="love"><i class="fa fa-heart"></i></button>
-  </div>
-</div>
-<!-- partial -->
-  <script src='https://hammerjs.github.io/dist/hammer.min.js'></script><script  src="./script.js"></script>
-
-</body>
+    <!-- partial -->
+    <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
 </html>
