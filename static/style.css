@@ -1,0 +1,203 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-image: url("background.jpg");
+  /*backdrop-filter: blur(20px);*/
+  background-size: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+.root {
+  margin-top:5%;
+}
+
+.header img {
+  display: block;
+  margin: 0 auto;
+  width: 19%;
+}
+
+.gender{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  /*margin-left: 34%;*/
+  margin-top: 30px;
+}
+
+.female, .male {
+  width: 15%;
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.btn {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #E92828;
+  color:black;
+  cursor: pointer;
+  display: block;
+  margin: 40px;
+  font-size:40px;
+  width: 250px;
+  height: 100px;
+
+}
+
+
+.danger {
+  border-color: #E92828;
+  color: white;
+}
+
+.danger:hover {
+  background-color: transparent;
+  color: #E92828;
+}
+
+.giftfor {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.loaded.giftfor {
+  opacity: 1;
+}
+
+.giftfor--status {
+  position: absolute;
+  top: 50%;
+  margin-top: -30px;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.giftfor--status i {
+  font-size: 100px;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  width: 100px;
+  margin-left: -50px;
+}
+
+.giftfor_love .fa-heart {
+  opacity: 0.7;
+  transform: scale(1);
+}
+
+.giftfor_nope .fa-remove {
+  opacity: 0.7;
+  transform: scale(1);
+}
+
+.giftfor--cards {
+  flex-grow: 1;
+  padding-top: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.giftfor--card {
+  display: inline-block;
+  width: 90vw;
+  max-width: 400px;
+  height: 70vh;
+  background: #FFFFFF;
+  padding-bottom: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: absolute;
+  will-change: transform;
+  transition: all 0.3s ease-in-out;
+  cursor: -webkit-grab;
+  cursor: grab;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.moving.giftfor--card {
+  transition: none;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.giftfor--card img {
+  max-width: 100%;
+  pointer-events: none;
+  width: 320px;
+  height: 320px;
+}
+
+.giftfor--card h3 {
+  margin-top: 32px;
+  font-size: 32px;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.giftfor--card p {
+  margin-top: 10px;
+  font-size: 15px;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+/*.giftfor--card img {
+  height: 350px;
+  width: 400px;
+}*/
+
+.giftfor--buttons {
+  flex: 0 0 100px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.giftfor--buttons button {
+  border-radius: 50%;
+  line-height: 60px;
+  width: 60px;
+  border: 0;
+  background: #FFFFFF;
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.giftfor--buttons button:focus {
+  outline: 0;
+}
+
+.giftfor--buttons i {
+  font-size: 32px;
+  vertical-align: middle;
+}
+
+.fa-heart {
+  color: #E92828;
+}
+
+.fa-remove {
+  color: #555F68;
+}
