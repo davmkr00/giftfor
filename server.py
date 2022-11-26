@@ -16,31 +16,52 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
+    return app.send_static_file('first.html')
+
+@app.route('/him')
+@app.route('/her')
+def products_page():
     return app.send_static_file('index.html')
 
 @app.route('/product', methods=['POST'])
 def send_product():
-    json_body = request.get_json(force=True)
-    # "giftfor": "him/her"
-    # "count": product number to send
-    # "price": under price number
-    # "received": random ids that already sent to client
-    already_selected_ids = ','.join(map(str,json_body['received']))
-    cursor = mysql.connection.cursor()
-    cursor.execute(f'SELECT id, title, price, image, url from giftfor_{json_body["giftfor"]} WHERE price < {json_body["price"]} AND id NOT IN({already_selected_ids}) ORDER BY RAND() LIMIT {json_body["count"]};')
-    data = cursor.fetchall()
-    return jsonify(data)
+    try:
+        json_body = request.get_json(force=True)
+        # "giftfor": "him/her"
+        # "count": product number to send
+        # "price": under price number
+        # "received": products ids that already sent to client
+        received = ''
+        if json_body['received']:
+            already_selected_ids = ','.join(map(str,json_body['received']))
+            received = f'AND id NOT IN({already_selected_ids})'
+
+        # if no max price use 1000 usd
+        max_price = json_body.get("price", "1000")
+
+        cursor = mysql.connection.cursor()
+        query = f'SELECT id, title, price, image, url from giftfor_{json_body["giftfor"]} WHERE price < {max_price} {received} ORDER BY RAND() LIMIT {json_body["count"]};'
+        print(query)
+        cursor.execute(query)
+        data = cursor.fetchall()
+        return jsonify(data)
+    except:
+        return jsonify('')
 
 @app.route('/feedback', methods=['POST'])
 def update_likes():
-    json_body = request.get_json(force=True)
-    # "giftfor": "him/her"
-    # "action": "liked/dislike"
-    # "id": product id
-    cursor = mysql.connection.cursor()
-    cursor.execute(f'UPDATE giftfor_{json_body["giftfor"]} SET giftfor_{json_body["giftfor"]}.{json_body["action"]} = giftfor_{json_body["giftfor"]}.{json_body["action"]} + 1 WHERE id={json_body["id"]};')
-    cursor = mysql.connection.commit()
-    return jsonify(json_body["id"])
+    try:
+        json_body = request.get_json(force=True)
+        # "giftfor": "him/her"
+        # "action": "liked/dislike"
+        # "id": product id
+        cursor = mysql.connection.cursor()
+        cursor.execute(f'UPDATE giftfor_{json_body["giftfor"]} SET giftfor_{json_body["giftfor"]}.{json_body["action"]} = giftfor_{json_body["giftfor"]}.{json_body["action"]} + 1 WHERE id={json_body["id"]};')
+        cursor = mysql.connection.commit()
+        return jsonify(json_body["id"])
+    except:
+        return jsonify('-1')
+
 
 if __name__ == '__main__':
     app.run(host="localhost", port=4000, debug=True)

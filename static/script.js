@@ -4,11 +4,21 @@ const giftforContainer = document.querySelector('.giftfor');
 const allCards = document.querySelectorAll('.giftfor--card');
 const nope = document.getElementById('nope');
 const love = document.getElementById('love');
+const giftfor = window.location.pathname.slice(1);
+var received = [];
 
-function createCards(id, title, image) {
+function handleCardClick(url) {
+  window.open(url);
+}
+
+function createCards(id, title, image, url) {
+  received.push(id);
   const cardDiv = document.createElement('div');
+  cardDiv.url = url;
   cardDiv.id = id;
   cardDiv.className = 'giftfor--card';
+  // cardDiv.addEventListener('dblclick', handleCardClick.bind(null, url));
+
   const cardP = document.createElement('p');
   cardP.innerText = title;
   const cardImg = document.createElement('img');
@@ -20,17 +30,16 @@ function createCards(id, title, image) {
   actionListener(cardDiv);
 }
 
-async function getCards(giftfor, count, received) {
+async function getCards(count) {
   const data = await postData('http://localhost:4000/product', {
     giftfor,
     count,
-    price: 100,
     received,
   });
   return data;
 }
 
-function feedback(giftfor, action, id) {
+function feedback(action, id) {
   postData('http://localhost:4000/feedback', {
     giftfor,
     action,
@@ -50,9 +59,9 @@ async function postData(url = '', data = {}) {
 }
 
 async function createInitialCards() {
-  const products = await getCards('her', 5, [1]);
+  const products = await getCards(5);
   products.forEach((product) => {
-    createCards(product[0], product[1], product[3]);
+    createCards(product[0], product[1], product[3], product[4]);
   });
 }
 
@@ -90,6 +99,7 @@ function actionListener(el) {
   });
 
   hammertime.on('panend', function (event) {
+    // element.removeEventListener('clcik', handleCardClick, true);
     el.classList.remove('moving');
     giftforContainer.classList.remove('giftfor_love');
     giftforContainer.classList.remove('giftfor_nope');
@@ -102,9 +112,12 @@ function actionListener(el) {
     } else {
       const cards = document.querySelectorAll('.giftfor--card:not(.removed)');
       const card = cards[0];
-      console.log(card.id, 'id');
-      event.deltaX > 0 ? feedback('her', 'liked', card.id) : feedback('her', 'dislike', card.id);
-
+      if (event.deltaX > 0) {
+        feedback('liked', card.id);
+        card.url && handleCardClick(card.url);
+      } else {
+        feedback('dislike', card.id);
+      }
       const endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
       const toX = event.deltaX > 0 ? endX : -endX;
       const endY = Math.abs(event.velocityY) * moveOutWidth;
@@ -135,10 +148,11 @@ function createButtonListener(love) {
 
     if (love) {
       card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
-      feedback('her', 'liked', card.id);
+      feedback('liked', card.id);
+      card.url && handleCardClick(card.url);
     } else {
       card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
-      feedback('her', 'dislike', card.id);
+      feedback('dislike', card.id);
     }
     addTheCard();
 
@@ -147,9 +161,17 @@ function createButtonListener(love) {
 }
 
 async function addTheCard() {
-  const products = await getCards('her', 1, [1]);
-  createCards(products[0][0], products[0][1], products[0][3]);
-  initCards();
+  const products = await getCards(1);
+  if (products.length) {
+    createCards(products[0][0], products[0][1], products[0][3], products[0][4]);
+    initCards();
+    return;
+  }
+  createCards(
+    -1,
+    'Oops! Our gifts for finished',
+    'https://cdn.igp.com/f_auto,q_auto/cards/birthday-gifts-for-women.jpg'
+  );
 }
 
 createInitialCards();

@@ -13,37 +13,6 @@ body {
   font-family: sans-serif;
 }
 
-.root {
-  margin-top: 5%;
-}
-
-.header img {
-  display: block;
-  margin: 0 auto;
-  width: 16%;
-}
-
-.gender {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  /*margin-left: 34%;*/
-  margin-top: 30px;
-}
-
-.female,
-.male {
-  width: 15%;
-  user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  border-radius:50%;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-}
-
 .btn {
   border: 2px solid black;
   border-radius: 5px;
@@ -69,7 +38,7 @@ body {
 
 .giftfor {
   width: 100vw;
-  height: 100vh;
+  height: 650px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
