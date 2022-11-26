@@ -77,7 +77,10 @@ body {
   text-align: center;
 }
 
-.text {
+.textm,
+.textf {
+  user-select: none;
+  cursor: pointer;
   color: white;
   font-size: 40px;
   position: absolute;
