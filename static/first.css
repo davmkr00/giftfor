@@ -91,3 +91,33 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .root {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .header img {
+    margin-left: 50px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .gender {
+    user-drag: none;
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+  }
+  .male,
+  .female {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+  }
+}

@@ -6,6 +6,7 @@ const nope = document.getElementById('nope');
 const love = document.getElementById('love');
 const giftfor = window.location.pathname.slice(1);
 var received = [];
+const sid = (Math.random() + 1).toString(36).substring(2);
 
 function handleCardClick(url) {
   window.open(url);
@@ -39,11 +40,13 @@ async function getCards(count) {
   return data;
 }
 
-function feedback(action, id) {
+function feedback(action, id, sw = false) {
   postData('http://localhost:4000/feedback', {
     giftfor,
     action,
     id,
+    sid,
+    sw,
   });
 }
 
@@ -113,10 +116,10 @@ function actionListener(el) {
       const cards = document.querySelectorAll('.giftfor--card:not(.removed)');
       const card = cards[0];
       if (event.deltaX > 0) {
-        feedback('liked', card.id);
+        feedback('liked', card.id, true);
         card.url && handleCardClick(card.url);
       } else {
-        feedback('dislike', card.id);
+        feedback('dislike', card.id, true);
       }
       const endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
       const toX = event.deltaX > 0 ? endX : -endX;
